@@ -1,0 +1,75 @@
+                                
+            <h1>Out Of Band Configuration</h1>
+                                                                                                                      
+   {df}     {df}    {df}    {df}    {df}                                                                              
+  +-------+-------+-------+-------+-------+              /---------------------------------------------------------\ 
+  | Lane1 | Lane2 |       | Lane7 | Lane8 |          .z1e|{cw}                                                     | 
+  |  OOB  |  OOB  | ^...^ |  OOB  |  OOB  |              |                                                         | 
+  +-------+-------+---+---+-------+-------+              |                                                         | 
+                      v                                  |                                                         | 
+  +---------------------------------------+.z1b          |                                                         | 
+  |                                 {cf}  |              |                                                         | 
+  |            ^Control Frame^            |              |                                                         | 
+  |        ^(48 32-bit words max)^        |              |                                                         | 
+  +-------------------+-------------------+              |                                                         | 
+            ____      |             ^                    |                                                         | 
+ ^SYSREF^      |      |             |                    |                                                         | 
+ ^Syncronize^  v      v             |          Frame     |                                                         | 
+  /---------------------------------+-----\   --------   |                                                         | 
+  |                               Store   +--> Format    |                                                         | 
+  |                                       +--> Sync      |                                                         | 
+  |          ^Software Defined^           |   +-----+    |                                                         | 
+  |            ^OOB Processor^            +-->|     |    |                                                         | 
+  |                           {pb2}       |<--+     |    |                                                         | 
+  \---------------------------------------/   | AXI |    |                                                         | 
+           {asm}                ^             | BUS |    |                                                         | 
+      +---------------+    +----+-----+       |     |    |                                                         | 
+      |   Processor   +___>|   {ff}   |       |     |    |                                                         | 
+      |   Assembly    |    |  ^SRAM^  |       |     |    |                                                         | 
+      +---------------+    +----------+       |     |    |                                                         | 
+                                              |     |    |                                                         | 
+                                              |{pd1}|    |                                                         | 
+                                              +-----+    \---------------------------------------------------------/ 
+                                                                                                          
+                                                      
+{:FILE theme dark scale 0.25 font-size 12 }           
+                                                                                                                         
+{# =================================== }
+{# Define paints to use in the diagram }
+{# =================================== }
+{# Define dark gray paints }
+{:pd1 blend c333 c444 border-width 0 border cWHI line c333 radius 8}
+                                                                                                                         
+{# ========================================= }
+{# Define connection lines from Band to lane }
+{# ========================================= }
+{:a* begin-xoffset 0 end-xoffset 4 end-yoffset 0.5 end-type arrow no-warning}
+{:z* end-xoffset 4 end-type arrow}
+                                                                                                                         
+{# ========================================= }
+{# Blue paints                               }
+{# ========================================= }
+{:pb2 = pb radius 8 border-width 0 shadow-scale 0.9 effect raised effect-width 12 font-size 14}
+
+{# ========================================= }
+{# Tan paint                                 }
+{# ========================================= }
+{:pt font-size 16 effect raised effect-width 9}
+
+{# ============================================ }
+{# Define line paints for white, gray and black }
+{# ============================================ }
+{:lw line cWHI line-width 2 linemode    # White line }
+{:lg line c888 line-width 2 linemode    # Gray line  }
+{:lb line cBLA line-width 2 linemode    # Black line }
+                                                                                                                         
+                                                                                                                         
+{# =================================== }
+{# Processor paints                    }
+{# =================================== }
+{:asm = pt font-size 16 effect raised effect-width 9 }
+{:ff effect raised effect-width 9}
+{:df fill cWMA text cWHI line cWHI}
+{:cf fill cLMG text cBLA line cBLA effect raised effect-width 12 font-size 14}
+{#:cw blend cFOR cDOG effect framed effect-width 8 radius 10 no-shadow}
+{:cw blend c105010 c206020 effect framed effect-width 8 radius 10 no-shadow}

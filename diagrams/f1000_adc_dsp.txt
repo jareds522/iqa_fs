@@ -1,0 +1,83 @@
+                                                                             
+    /--------------------------------------------------------------------------------\   
+    |          <h4>NCO Center Frequencies (MHz)</h4>                           {pd2} |   
+    |                  Freq         Phase                                            |   
+    |               +-+---------+ +---------+                                        |   
+    |               |1| {nco1}  | | {nco1}  |         - Dither Enable                |   
+    |               +-+---------+ +---------+         - Scaler                       |   
+    |               |2| {nco2}  | | {nco2}  |         - DDC Bypass PAR               |   
+    |      {m1}     +-+---------+ +---------+         - Sample number (ADC rate)     |   
+    | ADC  |\       |3| {nco3}  | | {nco3}  |         - Sine Phase                   |   
+  --+----->+ |      +-+---------+ +---------+                                        |   
+    | {ia} | |      |4| {nco4}  | | {nco4}  |            Digital Down Converter      |   
+    | Mem  | | {a}  +-+---------+ +---------+          /--------------------------\  |   
+  --+----->| +--*-->|5| {nco5}  | | {nco5}  |      {pc}| +---+     +---+    +---+ |  |   
+    | {im} | |  |   +-+---------+ +---------+          | | | |     | | |    | | | |  |   
+    | DUC  | |  |   |6| {nco6}  | | {nco6}  |          | | v + ooo | v +-*->| v | +--+--> 
+  --+----->+ |  |   +-+---------+ +---------+   NCO    | | 2 |     | 2 | |  | 2 | |  |   
+    | {id} |/   |   |7| {nco7}  | | {nco7}  |  Bypass  | +---+     +---+ |  +---+ |  |    
+    |           |   +-+---------+ +---------+    |\{m2}|             {p} +------->+--|-->  
+    |           |   |8| {nco8}  | | {nco8}  +--->+ |   |                    {p}   |  |{p2}
+    |           |   +-+---------+ +---------+ {c}| +-->| ^Rate^                   |  |   
+    |           |{b}                             | |{d}|                          |  |
+    |           +------------------------------->+ |   \--------------------------/  |   
+    |                   {b}                      |/                                  |   
+    \--------------------------------------------------------------------------------/   
+                                                                             
+                                                         
+{:FILE theme dark scale 0.31 font-size 12 shadow-scale 0.7}
+{:BOX fill pt text cBLK line cBLK}
+
+{# =================================== }
+{# Define paints to use in the diagram }
+{# =================================== }
+{# Define dark gray paint }
+{:pd1 blend c333 c444 border-width 0 border cWHI line c333}
+
+{# Dark gray paint for the Band 1 / Band 2 }
+{:pd2 blend c222 c333 border-width 0 border cWHI line c333 radius 12 shadow-scale 0.9 effect raised effect-width 7}
+
+{# Define a paint for the muxes }
+{:pm blend c888 cAAA border-width 0 border cBLK text cBLK line cBLK}
+
+{# Define a paint for the muxes }
+{:pc blend c8A8 cACA border-width 0 border cBLK text cBLK line cBLK effect framed effect-width 4 radius 10 no-shadow}
+
+{# Define a solid light blue paint }
+{:plb fill cD0D0FF border-width 0 text cBLKi line cBLK border cBLK}
+
+{# Define line paints for white, gray and black }
+{:lw line cWHI line-width 2 linemode    # White line }
+{:lg line c888 line-width 2 linemode    # Gray line  }
+{:lb line cBLA line-width 2 linemode    # Black line }
+
+{# Define a dark blue paint }
+{:pdb fill cDBL stroke 0 line cWHI border cWHI text cWHI}
+
+{# Define a brown paint }
+{:pbr fill cBRO border-width 1 line cWHI border cWHI text cWHI}
+
+{# =================================== }
+{# ADC1 and ADC1 Band objects          }
+{# =================================== }     
+{:nco1 = plb    # NCO Frequency 1 }           
+{:nco2 = plb    # NCO Frequency 1 }           
+{:nco3 = plb    # NCO Frequency 1 }           
+{:nco4 = plb    # NCO Frequency 1 }           
+{:nco5 = plb    # NCO Frequency 1 }           
+{:nco6 = plb    # NCO Frequency 1 }           
+{:nco7 = plb    # NCO Frequency 1 }           
+{:nco8 = plb    # NCO Frequency 1 }           
+{:m1   = pt     # ADC 1 B1 Mux   }
+{:m2   = pt     # ADC 1 B1 Mux   }
+
+{:ia   = lw                                }
+{:im   = lg                                }
+{:id   = lg                                }
+{:a    = lw                                }
+{:b    = lg                                }
+{:c    = lw                                }
+{:d    = lw                                }
+{:p    = lg     # Final stage bypass line  }
+{:p2   = lg     # Final stage bypass line  }
+

@@ -1,0 +1,140 @@
+                                
+                                                    <h1>DAC Data Transport Configuration</h1>
+
+
+                                                                                                                    {a1b1}              
+                                                            <h3>Transport Framers</h3>                  {iq0}     <h3>DAC Bands</h3>        
+ +-----------------------------------------------+.z1e  .z1b+-----------------------------------+        .a0e+-----+---------------+           
+ |          Transport Framer (per lane)          |          | L1                {f1}            |        .b0e| IQ0 |{iq1}   DAC1 B1|           
+ |                                               |          |                                   |.l1b    .a1e+-----+               |           
+ |   {cf}     {df}    {df}    {df}    {df}       |          |                                   |        .b1e| IQ1 |{iq2}          |           
+ |  +-------+-------+-------+-------+-------+    |          +-----------------------------------+        .a2e+-----+               |           
+ |  | Ctrl  |  Data |  Data |  Data |  Data |    |          | L2                {f2}            |        .b2e| IQ2 |{iq3}          |           
+ |  | Frame | Frame | Frame | Frame | Frame |    |          |                                   |.l2b    .a3e+-----+               |           
+ |  +-------+-------+-------+-------+-------+    |          |                                   |        .b3e| IQ3 |               |           
+ |                      ^                        |      .z2b+-----------------------------------+            +-----+---------------+           
+ |  +-------------------+-------------------+    |                                                       {iq4}       {a1b2}                    
+ |  |             Frame Decode              |    |          +-----------------------------------+        .c0e+-----+---------------+           
+ |  |                                       |    |          | L3                {f3}            |        .d0e| IQ0 |{iq5}   DAC1 B2|           
+ |  |                                       |    |          |                                   |.l3b    .c1e+-----+               |           
+ |  |                                 {pt2} |    |          |                                   |        .d1e| IQ1 |{iq6}          |           
+ |  +---------------------------------------+    |          +-----------------------------------+        .c2e+-----+               |           
+ |                     ^                   {ff}  |          | L4                {f4}            |        .d2e| IQ2 |{iq7}          |           
+ |       /-------------+-------------\     +---+ |          |                                   |.l4b    .c3e+-----+               |            
+ | JESD  |                           | DSP | F | |          |                                   |        .d3e| IQ3 |               |            
+ | Data  |     Software Defined      +---->| I +>|          +-----------------------------------+            +-----+---------------+            
+ +------>|     Framer Processor      |     | F | |                                                       {iq8}       {a2b1}                     
+ |       |                           |     | O | |          +-----------------------------------+        .e0e+-----+---------------+            
+ |       |                           +--+  +---+ |          | L5                {f5}            |        .f0e| IQ0 |{iq9}   DAC2 B1|            
+ |       |                      {pb} |  |  {cf}  |          |                                   |.l5b    .e1e+-----+               |            
+ |       \---------------------------/  |  +---+ |          |                                   |        .f1e| IQ1 |{iq10}         |            
+ |                             ^        |  | T | |          +-----------------------------------+        .e2e+-----+               |            
+ |        {asm}                |        +->| O +>|          | L6                {f6}            |        .f2e| IQ2 |{iq11}         |            
+ |   +---------------+    +----+-----+     |   | |          |                                   |.l6b    .e3e+-----+               |            
+ |   |    Framer     +--->|   {ff}   |     | O | |          |                                   |        .f3e| IQ3 |               |            
+ |   |   Assembly    |    |  ^SRAM^  |     | O | |          +-----------------------------------+            +-----+---------------+            
+ |   +---------------+    +----------+     | B | |                                                      {iq12}       {a2b2}                     
+ |                                         +---+ |          +-----------------------------------+        .g0e+-----+---------------+            
+ |                                               |          | L7                {f7}            |        .h0e| IQ0 |{iq13}  DAC2 B2|            
+ |                                               |          |                                   |.l7b    .g1e+-----+               |            
+ +-----------------------------------------------+.z2e      |                                   |        .h1e| IQ1 |{iq14}         |            
+                                                            +-----------------------------------+        .g2e+-----+               |            
+                                                            | L8                {f8}            |        .h2e| IQ2 |{iq15}         |           
+                                                            |                                   |.l8b    .g3e+-----+               |           
+                                                            |                                   |        .h3e| IQ3 |               |           
+                                                            +-----------------------------------+            +-----+---------------+           
+                                                                                                                               
+{:FILE theme dark scale 0.25 font-size 12 }                                                                              
+                                                                                                                         
+{# =================================== }                                                                                 
+{# Define paints to use in the diagram }                                                                                 
+{# =================================== }                                                                                 
+{# Define dark gray paint }                                                                                              
+{:pd1 blend c333 c444 border-width 0 border cWHI line c333 radius 8}                                                     
+                                                                                                                         
+{# ========================================= }                                                                           
+{# Define connection lines from Band to lane }                                                                           
+{# ========================================= }                                                                           
+{:a* begin-xoffset 0 end-xoffset 4 end-yoffset 0.5 end-type arrow no-warning}                                           
+{:b* begin-xoffset 0 end-xoffset 4 end-type arrow no-warning}                                                           
+{:c* begin-xoffset 0 end-xoffset 4 end-yoffset 0.5 end-type arrow no-warning}                                           
+{:d* begin-xoffset 0 end-xoffset 4 end-type arrow no-warning}                                                           
+{:e* begin-xoffset 0 end-xoffset 4 end-yoffset 0.5 end-type arrow no-warning}                                           
+{:f* begin-xoffset 0 end-xoffset 4 end-type arrow no-warning}                                                           
+{:g* begin-xoffset 0 end-xoffset 4 end-yoffset 0.5 end-type arrow no-warning}                                           
+{:h* begin-xoffset 0 end-xoffset 4 end-type arrow no-warning}                                                           
+{:l* begin-xoffset 0 end-xoffset 4 end-yoffset 0.5 end-type arrow no-warning}                                           
+{:z* begin-xoffset 4 end-type arrow}
+                                                                                                                         
+{# Dark gray paint for the Band 1 / Band 2 }                                                                             
+{:pd2 blend c111 c222 border-width 0 border cWHI line c999 radius 8 shadow-scale 0.9 effect raised effect-width 12}      
+{:pd3 blend c111 c222 border-width 0 border cWHI line c999 radius 8 shadow-scale 0.9 effect raised effect-width 9 font-size 16}      
+{:pb2 = pb radius 8 border-width 0 shadow-scale 0.9 effect raised effect-width 12 font-size 16}
+{:pb radius 8 border-width 0 shadow-scale 0.9 effect raised effect-width 12 }                                             
+{:plb blend cB8B8FF cD0D0FF text cBLK line cBLK radius 8 border-width 0 shadow-scale 0.9 effect raised effect-width 12}  
+{:pt2 = pt effect raised effect-width 9}
+{:pt font-size 16 effect raised effect-width 9}
+                                                                                                                         
+{# Define a paint for the muxes }                                                                                        
+{:pm blend c888 cAAA border-width 0 border cBLK}                                                                         
+{:df fill cWMA text cWHI line cWHI}
+{:cf fill cLMG text cBLA line cBLA}
+                                                                                                                         
+{# Define line paints for white, gray and black }                                                                        
+{:lw line cWHI line-width 2 linemode    # White line }                                                                   
+{:lg line c888 line-width 2 linemode    # Gray line  }                                                                   
+{:lb line cBLA line-width 2 linemode    # Black line }                                                                   
+                                                                                                                         
+{# Define a dark blue paint }                                                                                            
+{:pdb fill cDBL stroke 0 line cWHI border cWHI text cWHI}                                                                
+                                                                                                                         
+{# Define a brown paint }                                                                                                
+{:pbr fill cBRO border-width 1 line cWHI border cWHI text cWHI}                                                          
+                                                                                                                         
+{# =================================== }                                                                                 
+{# Framers 1 & 2 objects               }                                                                                 
+{# =================================== }                                                                                 
+{:f1   = plb    # Framers 1&2    }                                                                                       
+{:f2   = plb    # Framers 1&2    }                                                                                       
+{:a1b1 = pt                      }
+{:iq0  = pb                      }                                                                                       
+{:iq1  = pb                      }                                                                                       
+{:iq2  = pd2                     }                                                                                       
+{:iq3  = pd2                     }                                                                                       
+                                                                                                                         
+{# =================================== }                                                                                 
+{# Framers 3 & 4 objects               }                                                                                 
+{# =================================== }                                                                                 
+{:f3   = plb    # Framers 3      }                                                                                       
+{:f4   = plb    # Framers 4      }                                                                                       
+{:a1b2 = pd3                     }                                                                                       
+{:iq4  = pd2                     }                                                                                       
+{:iq5  = pd2                     }                                                                                       
+{:iq6  = pd2                     }                                                                                       
+{:iq7  = pd2                     }                                                                                       
+                                                                                                                         
+{# =================================== }                                                                                 
+{# Framers 5 & 6 objects               }                                                                                 
+{# =================================== }                                                                                 
+{:f5   = plb    # Framers 5&6    }                                                                                       
+{:f6   = plb    # Framers 5&6    }                                                                                       
+{:a2b1 = pt font-size 16 effect raised effect-width 9 }                                                                  
+{:iq8  = pb                      }                                                                                       
+{:iq9  = pb                      }                                                                                       
+{:iq10 = pd2                     }                                                                                       
+{:iq11 = pd2                     }                                                                                       
+                                                                                                                         
+{# =================================== }                                                                                 
+{# Framers 7 & 8 objects               }                                                                                 
+{# =================================== }                                                                                 
+{:f7   = plb    # Framers 7&8    }                                                                                       
+{:f8   = plb    # Framers 7&8    }                                                                                       
+{:a2b2 = pd2 font-size 16        }                                                                                       
+{:iq12 = pd2                     }                                                                                       
+{:iq13 = pd2                     }                                                                                       
+{:iq14 = pd2                     }                                                                                       
+{:iq15 = pd2                     }                                                                                       
+                                                                                                                         
+{:fr font-size 14}
+{:asm = pt font-size 16 effect raised effect-width 9 }                                                                  
+{:ff effect raised effect-width 9}

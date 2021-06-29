@@ -1,0 +1,201 @@
+
+                                                 <h2> F1000 RX Path (ADC) Configuration</h2>
+                                                                                                                                      
+                                      /---------------------------------------------\{ab1}                                                      
+                       {lb1}          | {l10}  +---------+{an1}  {m1}    {ad1}      |                                                           
+                    +---------------->|---+--->|   NCO   +----->+\    +---------+   | {ao1}            {mo1}                                    
+                {l1}|                 |{a}|{b} +---------+{al1} | +-->|   DDC   +-->+------*---------->|\  {ao1}  +---------+   +----------+    
+     /---------+    |{l2}+---------+  |   +-------------------->|/ {c}+---------+{c}|      |           | +------->|         +-->|          |    
+    (  {adc1}  +----+--->| {mem1}  |  \---------------------------------------------/ {lc1}|   CM  --->|/         |         |   +----------+    
+     \---------+    |    +---------+  /---------------------------------------------\{ab2} |           {mo2}      |         +-->|          |    
+                    |                 | {l11}  +---------+{an2}  {m2}    {ad2}      |      |   CM  --->|\  {ao2}  |         |   +----------+    
+                    +---------------->|---+--->|   NCO   +----->+\    +---------+   |{ao2} |           | +------->|         |   +----------+    
+                       {lb2}          |{d}|{e} +---------+{al2} | +-->|   DDC   +-->+------|---*------>|/   {pt}  |         +-->|          |    
+                                      |   +-------------------->|/ {f}+---------+{f}|      v   v{lc1} +--------+  |  JESD   |   +----------+    
+                                      \---------------------------------------------/    /-------\    | RISC-V |  |  204B   +-->|          |    
+                                                                               {ab3}     | {ac1} |    +--------+  |         |   +----------+    
+                                      /---------------------------------------------\    \-------/    |  OOB   |  |         |   +----------+    
+                       {lb3}          | {l12}  +---------+{an3}  {m3}    {ad3}      |      ^   ^{lc1} +--------+  |         +-->|          |    
+                    +---------------->|---+--->|   NCO   +----->+\    +---------+   |{ao3} |   |       {mo3}{pt}  |         |   +----------+    
+                {l3}|                 |{g}|{h} +---------+{al3} | +-->|   DDC   +-->+------|---*------>|\  {ao3}  |         +-->|          |    
+     /---------+    |{l4}+---------+  |   +-------------------->|/ {i}+---------+{i}|      |           | +------->|         |   +----------+    
+    (  {adc2}  +----+--->| {mem2}  |  \---------------------------------------------/ {lc1}|   CM  --->|/         |         |   +----------+    
+     \---------+    |    +---------+  /---------------------------------------------\{ab4} |                      |         +-->|          |    
+                    |                 | {l13}  +---------+{an4}  {m4}    {ad4}      |      |   CM  --->|\  {ao4}  |         |   +----------+    
+                    +---------------->|---+--->|   NCO   +----->+\    +---------+   |{ao4} |           | +------->|  {j1}   +-->|          |    
+                       {lb4}          |{j}|{k} +---------+{al4} | +-->|   DDC   +-->+------*---------->|/         +---------+   +----------+    
+                                      |   +-------------------->|/ {l}+---------+{l}|                  {mo4}                                    
+                                      \---------------------------------------------/                                                           
+                                                                                                                                                
+                                      /---------------------------------------------\{ab5}                                          
+                       {lb5}          | {l14}  +---------+{an5}  {m5}    {ad5}      |                                               
+                    +---------------->|---+--->|   NCO   +----->+\    +---------+   |    {ao5}            {mo5}                     
+                {l5}|                 |{m}|{n} +---------+{al5} | +-->|   DDC   +-->|---------*---------->|\                        
+     /---------+    |{l6}+---------+  |   +-------------------->|/ {o}+---------+{o}|         |           | |                       
+    (  {adc3}  +----+--->| {mem3}  |  \---------------------------------------------/    {lc2}|   CM ---->|/                        
+     \---------+    |    +---------+  /---------------------------------------------\{ab6}    |           {mo6}                     
+                    |                 | {l15}  +---------+{an6}  {m6}    {ad6}      |         |   CM ---->|\                        
+                    +---------------->|---+--->|   NCO   +----->+\    +---------+   | {ao6}   |           | |                       
+                       {lb6}          |{p}|{q} +---------+{al6} | +-->|   DDC   +-->+---------|---*------>|/                        
+                                      |   +-------------------->|/ {s}+---------+{s}|         v   v{lc2}                            
+                                      \---------------------------------------------/       /-------\                               
+                                                                                            | {ac2} |                               
+                                      /---------------------------------------------\{ab7}  \-------/                               
+                       {lb7}          | {l16}  +---------+{an7}  {m7}    {ad7}      |         ^   ^{lc2}                            
+                    +---------------->|---+--->|   NCO   +----->+\    +---------+   | {ao7}   |   |       {mo7}                     
+                {l7}|                 |{t}|{u} +---------+{al7} | +-->|   DDC   +-->+---------|---*------>|\                        
+     /---------+    |{l8}+---------+  |   +-------------------->|/ {v}+---------+{v}|         |           | |                       
+    (  {adc4}  +----+--->| {mem4}  |  \---------------------------------------------/    {lc2}|   CM ---->|/                        
+     \---------+    |    +---------+  /---------------------------------------------\{ab8}    |           {mo8}                     
+                    |                 | {l17}  +---------+{an8}  {m8}    {ad8}      |         |   CM ---->|\                        
+                    +---------------->|---+--->|   NCO   +----->+\    +---------+   | {ao8}   |           | |                       
+                       {lb8}          |{w}|{x} +---------+{al8} | +-->|   DDC   +-->+---------*---------->|/                        
+                                      |   +-------------------->|/ {y}+---------+{y}|                                               
+                                      \---------------------------------------------/                                               
+                                                                                                                                    
+{:FILE theme dark scale 0.23 font-size 12}                                                                                          
+                                                                                                                                    
+{# Define dark gray paint }                                                                                                         
+{:bd blend c111 c222 border-width 0 border cWHI line c333}                                                                          
+{:pd blend c333 c444 border-width 0 border cWHI line c333}                                                                          
+{:lw line cWHI line-width 2 linemode}                                                                                               
+{:lg line c888 line-width 2 linemode}                                                                                               
+{:lb line cBLA line-width 2 linemode}                                                                                               
+{:pm blend c888 cAAA border-width 0 border cBLK}                                                                                    
+{:pdb fill cDBL stroke 0 line cWHI border cWHI text cWHI}                                                                           
+                                                                                                                                    
+{:pg fill cGRA}                                                                                                                     
+                                                                                                                                    
+{# ADC1 and Band objects}                                                                                                           
+{:adc1 fill pd}                                                                                                                     
+{:ab1  fill bd}                                                                                                                     
+{:an1  fill cDBL}                                                                                                                   
+{:ad1  fill cDBL}                                                                                                                   
+{:al1  line c888 line-width 2 linemode}                                                                                             
+{:m1   blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:ab2  fill bd}                                                                                                                     
+{:an2  fill cDBL}                                                                                                                   
+{:ad2  fill cDBL}                                                                                                                   
+{:al2  line c888 line-width 2 linemode}                                                                                             
+{:m2   blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:l10  line c888 line-width 2 linemode}                                                                                             
+{:l11  line c888 line-width 2 linemode}                                                                                             
+{:a    line c888 line-width 2 linemode}                                                                                             
+{:b    line c888 line-width 2 linemode}                                                                                             
+{:c    line c888 line-width 2 linemode}                                                                                             
+{:d    line c888 line-width 2 linemode}                                                                                             
+{:e    line c888 line-width 2 linemode}                                                                                             
+{:f    line c888 line-width 2 linemode}                                                                                             
+{:mem1 fill cDBL stroke 0 line cWHI border cWHI text cWHI}                                                                          
+{:ac1  fill cBRO border-width 1 line cWHI border cWHI text cWHI}                                                                    
+{:lc1  line c888 line-width 2 linemode}                                                                                             
+{:ao1  line c888 line-width 2 linemode}                                                                                             
+{:ao2  line c888 line-width 2 linemode}                                                                                             
+{:mo1  blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:mo2  blend c888 cAAA border-width 0 border cBLK}                                                                                  
+                                                                                                                                    
+{# ADC2 and Band objects}                                                                                                           
+{:adc2 fill pd}                                                                                                                     
+{:ab3  fill bd}                                                                                                                     
+{:an3  fill cDBL}                                                                                                                   
+{:ad3  fill cDBL}                                                                                                                   
+{:al3  line c888 line-width 2 linemode}                                                                                             
+{:m3   blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:ab4  fill bd}                                                                                                                     
+{:an4  fill cDBL}                                                                                                                   
+{:ad4  fill cDBL}                                                                                                                   
+{:al4  line c888 line-width 2 linemode}                                                                                             
+{:m4   blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:l12  line c888 line-width 2 linemode}                                                                                             
+{:l13  line c888 line-width 2 linemode}                                                                                             
+{:g    line c888 line-width 2 linemode}                                                                                             
+{:h    line c888 line-width 2 linemode}                                                                                             
+{:i    line c888 line-width 2 linemode}                                                                                             
+{:j    line c888 line-width 2 linemode}                                                                                             
+{:k    line c888 line-width 2 linemode}                                                                                             
+{:l    line c888 line-width 2 linemode}                                                                                             
+{:mem2 fill cDBL stroke 0 line cWHI border cWHI text cWHI}                                                                          
+{:ao3  line c888 line-width 2 linemode}                                                                                             
+{:ao4  line c888 line-width 2 linemode}                                                                                             
+{:mo3  blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:mo4  blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:j1   fill pd}                                                                                                                     
+                                                                                                                                    
+{# ADC3 and Band objects}                                                                                                           
+{:adc3 fill pd}                                                                                                                     
+{:ab5  fill bd}                                                                                                                     
+{:an5  fill cDBL}                                                                                                                   
+{:ad5  fill cDBL}                                                                                                                   
+{:al5  line c888 line-width 2 linemode}                                                                                             
+{:m5   blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:ab6  fill bd}                                                                                                                     
+{:an6  fill cDBL}                                                                                                                   
+{:ad6  fill cDBL}                                                                                                                   
+{:al6  line c888 line-width 2 linemode}                                                                                             
+{:m6   blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:l14  line c888 line-width 2 linemode}                                                                                             
+{:l15  line c888 line-width 2 linemode}                                                                                             
+{:m    line c888 line-width 2 linemode}                                                                                             
+{:n    line c888 line-width 2 linemode}                                                                                             
+{:o    line c888 line-width 2 linemode}                                                                                             
+{:p    line c888 line-width 2 linemode}                                                                                             
+{:q    line c888 line-width 2 linemode}                                                                                             
+{:s    line c888 line-width 2 linemode}                                                                                             
+{:mem3 fill cDBL stroke 0 line cWHI border cWHI text cWHI}                                                                          
+{:ac2  fill cBRO border-width 1 line cWHI border cWHI text cWHI}                                                                    
+{:lc2  line c888 line-width 2 linemode}                                                                                             
+{:ao5  line c888 line-width 2 linemode}                                                                                             
+{:ao6  line c888 line-width 2 linemode}                                                                                             
+{:mo5  blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:mo6  blend c888 cAAA border-width 0 border cBLK}                                                                                  
+                                                                                                                                    
+{# ADC4 and Band objects}                                                                                                           
+{:adc4 fill pd}                                                                                                                     
+{:ab7  fill bd}                                                                                                                     
+{:an7  fill cDBL}                                                                                                                   
+{:ad7  fill cDBL}                                                                                                                   
+{:al7  line c888 line-width 2 linemode}                                                                                             
+{:m7   blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:ab8  fill bd}                                                                                                                     
+{:an8  fill cDBL}                                                                                                                   
+{:ad8  fill cDBL}                                                                                                                   
+{:al8  line c888 line-width 2 linemode}                                                                                             
+{:m8   blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:l16  line c888 line-width 2 linemode}                                                                                             
+{:l17  line c888 line-width 2 linemode}                                                                                             
+{:t    line c888 line-width 2 linemode}                                                                                             
+{:u    line c888 line-width 2 linemode}                                                                                             
+{:v    line c888 line-width 2 linemode}                                                                                             
+{:w    line c888 line-width 2 linemode}                                                                                             
+{:x    line c888 line-width 2 linemode}                                                                                             
+{:y    line c888 line-width 2 linemode}                                                                                             
+{:mem4 fill cDBL stroke 0 line cWHI border cWHI text cWHI}                                                                          
+{:ao7  line c888 line-width 2 linemode}                                                                                             
+{:ao8  line c888 line-width 2 linemode}                                                                                             
+{:mo7  blend c888 cAAA border-width 0 border cBLK}                                                                                  
+{:mo8  blend c888 cAAA border-width 0 border cBLK}                                                                                  
+                                                                                                                                    
+{# ADC1 connection lines}                                                                                                           
+{:l1 line c888 line-width 2 linemode}                                                                                               
+{:l2 line c888 line-width 2 linemode}                                                                                               
+{:lb1 line c888 line-width 2 linemode}                                                                                              
+{:lb2 line c888 line-width 2 linemode}                                                                                              
+                                                                                                                                    
+{# ADC2 connection lines}                                                                                                           
+{:l3 line c888 line-width 2 linemode}                                                                                               
+{:l4 line c888 line-width 2 linemode}                                                                                               
+{:lb3 line c888 line-width 2 linemode}                                                                                              
+{:lb4 line c888 line-width 2 linemode}                                                                                              
+                                                                                                                                    
+{# ADC3 connection lines}                                                                                                           
+{:l5 line c888 line-width 2 linemode}                                                                                               
+{:l6 line c888 line-width 2 linemode}                                                                                               
+{:lb5 line c888 line-width 2 linemode}                                                                                              
+{:lb6 line c888 line-width 2 linemode}                                                                                              
+                                                                                                                                    
+{# ADC4 connection lines}                                                                                                           
+{:l7 line c888 line-width 2 linemode}                                                                                               
+{:l8 line c888 line-width 2 linemode}                                                                                               
+{:lb7 line c888 line-width 2 linemode}                                                                                              
+{:lb8 line c888 line-width 2 linemode}                                                                                              
+                                                                                                                                    

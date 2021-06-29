@@ -1,0 +1,153 @@
+
+                                      /---------------------------------------------\{ab1}                                                      
+                       {lb1}          | {l10}  +---------+{an1}  {m1}    {ad1}      |                                                           
+                    +---------------->+---+--->|   NCO   +----->+\    +---------+   | {ao1}            {mo1}                                    
+                {l1}|                 |{a}|{b} +---------+{al1} | +-->|   DDC   +-->+------*---------->|\  {ao1}  /---------\     +-----------+   
+     /---------+    |{l2}+---------+  |   +-------------------->|/ {c}+---------+{c}|      |           | +------->|         +---->|  {sl1}    |   
+    (  {adc1}  +----+--->| {mem1}  |  \---------------------------------------------/ {lc1}|   CM  --->|/         |  Data   | {A} +-----------+   
+     \---------+    |    +---------+  /---------------------------------------------\{ab2} |           {mo2}      |  Layer  +---->|  {sl2}    |   
+                    |                 | {l11}  +---------+{an2}  {m2}    {ad2}      |      |   CM  --->|\  {ao2}  |         | {B} +-----------+   
+                    +---------------->+---+--->|   NCO   +----->+\    +---------+   |{ao2} |           | +------->|         |     +-----------+   
+                       {lb2}          |{d}|{e} +---------+{al2} | +-->|   DDC   +-->+------|---*------>|/   {pt}  |         +---->|  {sl3}    |   
+                                      |   +-------------------->|/ {f}+---------+{f}|      v   v{lc1} +--------+  |         | {C} +-----------+   
+                                      \---------------------------------------------/    /-------\    | RISC-V |  |  JESD   +---->|  {sl4}    |   
+                                                                               {ab3}     | {ac1} |    +--------+  |  204B   | {D} +-----------+   
+                                      /---------------------------------------------\    \-------/    |  OOB   |  |         |     +-----------+   
+                       {lb3}          | {l12}  +---------+{an3}  {m3}    {ad3}      |      ^   ^{lc1} +--------+  |         +---->|  {sl5}    |   
+                    +---------------->+---+--->|   NCO   +----->+\    +---------+   |{ao3} |   |       {mo3}{pt}  |         | {E} +-----------+   
+                {l3}|                 |{g}|{h} +---------+{al3} | +-->|   DDC   +-->+------|---*------>|\  {ao3}  |  Link   +---->|  {sl6}    |   
+     /---------+    |{l4}+---------+  |   +-------------------->|/ {i}+---------+{i}|      |           | +------->|  Layer  | {F} +-----------+   
+    (  {adc2}  +----+--->| {mem2}  |  \---------------------------------------------/ {lc1}|   CM  --->|/         |         |     +-----------+   
+     \---------+    |    +---------+  /---------------------------------------------\{ab4} |                      |         +---->|  {sl7}    |   
+                    |                 | {l13}  +---------+{an4}  {m4}    {ad4}      |      |   CM  --->|\  {ao4}  |         | {G} +-----------+   
+                    +---------------->+---+--->|   NCO   +----->+\    +---------+   |{ao4} |           | +------->|  {j1}   +---->|  {sl8}    |   
+                       {lb4}          |{j}|{k} +---------+{al4} | +-->|   DDC   +-->+------*---------->|/         \---------/ {H} +-----------+   
+                                      |   +-------------------->|/ {l}+---------+{l}|                  {mo4}                                    
+                                      \---------------------------------------------/                                                           
+
+
+{:FILE theme dark scale 0.23 font-size 12 }
+
+{# =================================== }
+{# Define paints to use in the diagram }
+{# =================================== }
+{# Define dark gray paint }
+{:pd1 blend c333 c555 border-width 0 border cWHI line c333 radius 8}
+
+{:a* end-type arrow}
+
+{# Dark gray paint for the Band 1 / Band 2 }
+{:pd2 blend c111 c282828 border-width 0 border cWHI line c333 radius 8 shadow-scale 0.9 effect raised effect-width 12}
+{:pb radius 8 border-width 0 shadow-scale 0.9 effect raised effect-width 12}
+
+{# Define a paint for the muxes }
+{:pm blend c888 cAAA border-width 0 border cBLK}
+
+{:a* end-type arrow}
+
+{# Define line paints for white, gray and black }
+{:lw line cWHI line-width 2 linemode    # White line }
+{:lg line c888 line-width 2 linemode    # Gray line  }
+{:lb line cBLA line-width 2 linemode    # Black line }
+
+{# Define a dark blue paint }
+{:pdb fill cDBL stroke 0 line cWHI border cWHI text cWHI}
+
+{# Define a brown paint }
+{:pbr fill cBRO border-width 1 line cWHI border cWHI text cWHI}
+
+{# =================================== }
+{# ADC1 and ADC1 Band objects          }
+{# =================================== }     
+{:adc1 = pd1    # ADC 1          }           
+{:ab1  = pd2    # ADC 1 Band 1   }           
+{:an1  = pdb    # ADC 1 B1 NCO   }           
+{:ad1  = pdb    # ADC 1 B1 DDC   }           
+{:m1   = pm     # ADC 1 B1 Mux   }           
+{:ab2  = pd2    # ADC 1 Band 2   }           
+{:an2  = pdb    # ADC 1 B2 NCO   }           
+{:ad2  = pdb    # ADC 1 B2 DDC   }           
+{:m2   = pm     # ADC 1 B2 Mux   }           
+{:al1  = lg     # ADC 1 B1 Lines }           
+{:l10  = lg }                                
+{:a    = lg }                                
+{:b    = lg }                                
+{:c    = lg }                                
+{:al2  = lg     # ADC 1 B2 Lines }           
+{:l11  = lg }                                
+{:d    = lg }                                
+{:e    = lg }                                
+{:f    = lg }                                
+{:mem1 = pdb    # ADC 1 Memory             } 
+{:ao1  = lg     # ADC 1 B1 Output lines    } 
+{:ao2  = lg     # ADC 1 B2 Output lines    } 
+{:mo1  = pm     # ADC 1 B1 Output Mux      } 
+{:mo2  = pm     # ADC 1 B2 Output Mux      } 
+                                                                                                                                    
+{# =================================== }     
+{# ADC2 and ADC2 Band objects          }     
+{# =================================== }     
+{:adc2 = pd1    # ADC 2          }                         
+{:ab3  = pd2    # ADC 2 Band 1   }                         
+{:an3  = pdb    # ADC 2 B1 NCO   }                         
+{:ad3  = pdb    # ADC 2 B1 DDC   }                         
+{:m3   = pm     # ADC 2 B1 Mux   }                         
+{:ab4  = pd2    # ADC 2 Band 2   }                         
+{:an4  = pdb    # ADC 2 B2 NCO   }                         
+{:ad4  = pdb    # ADC 2 B2 DDC   }                         
+{:m4   = pm     # ADC 2 B2 Mux   }                         
+{:al3  = lg     # ADC 2 B1 Lines }                         
+{:l12  = lg }                                              
+{:g    = lg }                                              
+{:h    = lg }                                              
+{:i    = lg }                                              
+{:al4  = lg     # ADC 2 B2 Lines }                         
+{:l13  = lg }                                              
+{:j    = lg }                                              
+{:k    = lg }                                              
+{:l    = lg }                                              
+{:mem2 = pdb    # ADC 2 Memory             }               
+{:ao3  = lg     # ADC 2 B1 Output lines    }               
+{:ao4  = lg     # ADC 2 B2 Output lines    }               
+{:mo3  = pm     # ADC 2 B1 Output Mux      }               
+{:mo4  = pm     # ADC 2 B2 Output Mux      }               
+                                             
+{# =================================== }
+{# ADC1 connection lines               }
+{# =================================== }
+{:l1   = lg}
+{:l2   = lg}
+{:lb1  = lg}
+{:lb2  = lg}
+
+{# =================================== }
+{# ADC2 connection lines               }
+{# =================================== }
+{:l3   = lg}
+{:l4   = lg}
+{:lb3  = lg}
+{:lb4  = lg}
+
+{# =================================== }
+{# Complex Multiplier and JESD204B     }
+{# =================================== }
+{:ac1  = pbr    # ADC 1 Complex Multiplier }
+{:lc1  = lg     # ADC 1 CM Lines           }
+{:j1   = pd1    # JESD204B                 }
+{:sl1  = pd2    # Serdes Lane 1            }
+{:A    = lg                                }
+{:sl2  = pd2    # Serdes Lane 1            }
+{:B    = lg                                }
+{:sl3  = pd2    # Serdes Lane 3            }
+{:C    = lg                                }
+{:sl4  = pd2    # Serdes Lane 4            }
+{:D    = lg                                }
+{:sl5  = pd2    # Serdes Lane 5            }
+{:E    = lg                                }
+{:sl6  = pd2    # Serdes Lane 6            }
+{:F    = lg                                }
+{:sl7  = pd2    # Serdes Lane 7            }
+{:G    = lg                                }
+{:sl8  = pd2    # Serdes Lane 8            }
+{:H    = lg                                }
+
