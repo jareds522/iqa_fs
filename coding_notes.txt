@@ -1,0 +1,50 @@
+    // This needs to be a pointer I think.  I'm not sure if std::list will 
+    // automatically make a copy of your struct or not?  Do you know?
+    //i believe that it automatically does the nextpointers and all that, but i 
+    ///will change it if not.  It's usually a better idea to manage things as
+    // pointers instead of stack variables.  Sometimes structs can grow quite
+    // large, then if you decide to move your code to an embedded processor with
+    // limited RAM and small stacks, you will run into an issue and have to do a
+    // lot of code rework.ok, ill just use the pointers then haha.  I only say
+    // that because for the last 3 days, I have been taking C++ code that was
+    // written for Ubuntu and trying to get it to run on the RISC-V with only
+    // 256K data RAM.  And it had large stacks, large buffers, large everything :)
+    //sorry what's risc-v again? and by the way thanks for the coding tips.
+    // No worries :)  RISC-V is the 32-bit processor core in the F1000 chip.  There
+    // are two of them, one for each "Element Processor".  It is similar to a 
+    // 32-bit microcontroller class ARM, such as ARM cortex-m0 or something.
+    // Sorry.  It runs the ADC calibration code, along with other things.  Ok, now done :)
+    //haha np, got it... also i was wondering if it was good practice to initialize 
+    //pointers to NULL, or does it not matter?  They should be initialzed with something,
+    // But if you code is already going to set them to something, there is no need
+    // to set them during the definition.  Like I wouldn't do this:
+
+    // int * pInt = NULL;
+    //
+    //  pInt = new int;
+    // It is redundant.  Most optimizing compilers will see the first assignment as
+    // ineffective and not even generate code, so don't bother :)
+    //okay, could you give an example of when you would do it?
+
+    // struct IQA_FILE *pFile = NULL
+    //
+    //  if (input_arg == some_value)
+    //      pFile = new IQA_FILE;
+    //
+    //  or even have additional if's below
+    //
+    //  if (pFile != NULL)
+    //     fprintf(pFile, "debug data = %d\n", x);   // Etc.
+    //
+    // Another example would be for global variables.  You ussually want to initialize those
+    // to something, even if it is NULL.  Almost *every* compiler / linker will zero out the
+    // global variables automatially, the the operative word is *almost*.  There are a few
+    // that will not, like on the Xilinx FPGA microblaze.  Then if you don't initialize to
+    // NULL and expect the compiler to do it, you could run into issues.
+
+    //okay, thanks! so if its unclear whether the pointer will be assigned you should NULL it?
+    // That's a good practice.  That way if you try to dereference it and the OS segfaults, then
+    // during debug it will be easier to see the NULL value vs some random value leving you wondering
+    // how it got this value.  ok, thanks again!  Yep! You can save off these notes if you want...
+    // up to you.
+    //would that just be done with 
