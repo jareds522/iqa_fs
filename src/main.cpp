@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     iqa_fs_init();
 	
     // Try to open one of the diagram files
-    fd = iqa_fopen("./diagrams/f1000_adc_dsp.txt", "r");
+    fd = iqa_fopen("./diagrams/f1000_tx_block.txt", "r");
 
     // Read from the file until EOF
     while (iqa_fgets(buf, sizeof(buf), fd) != NULL)

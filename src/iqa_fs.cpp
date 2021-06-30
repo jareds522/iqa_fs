@@ -180,6 +180,7 @@ IQA_FILE* iqa_fopen(const char *filename, const char *mode)
 
 /****************************************************************************
  * Name: iqa_fgets
+ * read file buffer up to \n or until end of buf array is reached
  ****************************************************************************/
 
 char * iqa_fgets(char * buf, int maxLen, IQA_FILE *pFile)
@@ -188,6 +189,10 @@ char * iqa_fgets(char * buf, int maxLen, IQA_FILE *pFile)
     int c = 0;
     int end_of_file = 0;
     
+    //sanity check
+    if(maxLen < 2)
+        return NULL;
+    
     buf[0] = '\0';
 
     //read bytes from pFile->buf up until the next \n
@@ -195,27 +200,36 @@ char * iqa_fgets(char * buf, int maxLen, IQA_FILE *pFile)
     {
         // Copy a char from pFile->buf to output buf
         buf[c] = pFile->buf[pFile->bufPtr++];
-
+        
         // Test if out buffer is out of data
         if (pFile->bufPtr >= sizeof(pFile->buf))
         {
-            //printf("bufPtr: %i, buf size: %lu\n", pFile->bufPtr, sizeof(pFile->buf));
-            // This first parameter here is stored in our IQA_FILE struct
-            // and initialized during the "open" call
+            //clear old buffer
+            clear_file_buf(pFile);
+            
+            
+            //Refill pFile->buf
+            
             //NOTE: u.imops->read() returns # characters read
             //      or returns <0 if error
             end_of_file = pFile->theFile.f_inode->u.i_mops
-                    ->read(&pFile->theFile, pFile->buf, sizeof(pFile->buf)) == 0;
-            //printf("end_of_file: %d\n", end_of_file);
+                        ->read(&pFile->theFile, pFile->buf, sizeof(pFile->buf)) == 0;
+
             if (end_of_file)
                 pFile->bufPtr = sizeof(pFile->buf);
+                
             else
                 pFile->bufPtr = 0;
         }
 
-
-        // Test for "\n" in output buffer, EOF, or buffer overflow
-        if (buf[c] == '\n' || (end_of_file && c != 0) || c >= maxLen - 2)
+        //make sure buffer isnt overflowing
+        if (c >= maxLen - 2)
+        {
+            buf[c+1] = '\0';
+            return buf;
+        }
+        // check for "\n" in output buffer
+        if (buf[c] == '\n')
         {
             buf[c+1] = '\0';
             return buf;
@@ -223,6 +237,7 @@ char * iqa_fgets(char * buf, int maxLen, IQA_FILE *pFile)
         else if (!end_of_file)
             c++;
     }
+
     return NULL;
 }
 
@@ -300,8 +315,16 @@ int retrieve_filemode(const char *mode)
     return -1;
 }
 
-
-
+/****************************************************************************
+ *null terminate all elements in the file buffer
+ ****************************************************************************/
+void clear_file_buf(IQA_FILE *pFile)
+{
+    for(unsigned int x = 0; x < sizeof(pFile->buf); x++)
+    {
+        pFile->buf[x] = '\0';
+    }
+}
 
 
 

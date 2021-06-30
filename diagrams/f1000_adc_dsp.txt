@@ -80,4 +80,3 @@
 {:d    = lw                                }
 {:p    = lg     # Final stage bypass line  }
 {:p2   = lg     # Final stage bypass line  }
-

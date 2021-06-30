@@ -4,6 +4,7 @@
 
 typedef struct iqa_file_s
 {
+    //the array size may be changed & the program won't be affected
     char                                buf[512];
     unsigned int                        bufPtr;
     struct file                         theFile;
@@ -30,6 +31,7 @@ char*               iqa_fgets(char *, int, IQA_FILE*);
 IQA_FILE*           iqa_fclose(IQA_FILE *);
 int                 iqa_romfs_mount(const char*, const char*);
 int                 retrieve_filemode(const char*);
+void                clear_file_buf(IQA_FILE *pFile);
 
 
 
