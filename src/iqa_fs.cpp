@@ -143,6 +143,11 @@ IQA_FILE* iqa_fopen(const char *filename, const char *mode)
             pFile->theFile.f_seekpos = 0;
             pFile->theFile.f_pos = 0;
             pFile->theFile.f_priv = NULL;
+            
+            //initialize buffer data
+            pFile->bufPtr = 0;
+            for(unsigned int x = 0; x < sizeof(pFile->buf); x++)
+                pFile->buf[x] = ' ';
             break;
         }
     }

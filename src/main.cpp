@@ -42,21 +42,41 @@ extern "C"
 int main(int argc, char *argv[])
 {
     IQA_FILE *fd;
+    FILE* fp;
+    FILE *pFile;
     char     buf[256];
+    char buf2[256];
 
     // Initialize the romfs
     iqa_fs_init();
 	
     // Try to open one of the diagram files
     fd = iqa_fopen("./diagrams/f1000_tx_block.txt", "r");
+    pFile = fopen("IQA_FILE.txt", "w");
 
     // Read from the file until EOF
     while (iqa_fgets(buf, sizeof(buf), fd) != NULL)
     {
         printf("%s", buf);
+        fprintf(pFile, "%s", buf);
     }
 
     iqa_fclose(fd);
+    fclose(pFile);
+    
+    puts("\n\n\n\n\n\n\n\n");
+    
+    fp = fopen("./diagrams/f1000_tx_block.txt", "r");
+    pFile = fopen("FILE.txt", "w");
+    while (fgets(buf2, sizeof(buf2), fp) != NULL)
+    {
+        printf("%s", buf2);
+        fprintf(pFile, "%s", buf2);
+    }
+
+    fclose(fp);
+    fclose(pFile);
+    
     return 0;
 }
 

@@ -113,6 +113,7 @@ ifeq ($(GENROMFS),)
 endif
 	$(Q)mkdir -p /tmp/diagrams
 	$(Q)cp -rf diagrams /tmp/diagrams
+	$(Q)cp .asceerc /tmp/diagrams
 	$(Q)genromfs -d /tmp/diagrams -f diagrams.fs
 	$(Q)xxd -i diagrams.fs > src/diagrams.c
 	@rm -rf diagrams.fs
